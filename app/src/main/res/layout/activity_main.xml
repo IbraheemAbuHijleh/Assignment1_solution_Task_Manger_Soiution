@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ibraheem1"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:background="#CA9818"
+        android:fontFamily="cursive"
+        android:shadowColor="#851D1D"
+        android:text="Task Manger System"
+        android:textColor="@color/black"
+        android:textSize="48sp" />
+
+    <ListView
+        android:id="@+id/listviwe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:entries="@array/Item"
+        android:textAlignment="textEnd" />
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
