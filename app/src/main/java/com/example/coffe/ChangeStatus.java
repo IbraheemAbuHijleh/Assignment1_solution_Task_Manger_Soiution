@@ -46,6 +46,8 @@ public class ChangeStatus extends AppCompatActivity {
 
         String input = textView.getText().toString().toLowerCase();
 
+        String sep = spinner.getSelectedItem().toString().toLowerCase();
+
         // Convert JSON data back to your object (DataBase)
         Gson gson = new Gson();
         DataBase data = gson.fromJson(jsonData, DataBase.class);
@@ -56,34 +58,36 @@ public class ChangeStatus extends AppCompatActivity {
 
             for (int i = 0; i < data.task.size(); i++) {
                 if (data.task.get(i).getName_Task().toLowerCase().equals(input)) {
-                    // Update the status if the task is found
-                    data.task.get(i).setStatus_Task("done");
-                    taskFound = true;
-                    break; // exit the loop since the task is found
+                    if (sep.equals("due")) {
+                        textV.setText("The task is already due");
+                    } else {
+                        if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
+                            // Update the status to "done" only if the current status is "due"
+                            data.task.get(i).setStatus_Task("done");
+                            taskFound = true;
+                            textV.setText("Task status changed to Done");
+                        } else {
+                            // The task is already done
+                            textV.setText("The task is already done.");
+                        }
+                        break; // exit the loop since the task is found
+                    }
+                }
+                else{
+                    textV.setText("Sorry, the task is not found.");
                 }
             }
 
-            if (!taskFound) {
-                // Show a message if the task is not found
-                textV.setText("Sorry, the task is not found or the task is already done.");
-            } else {
-                // Save the updated data
+
+
                 String updatedData = gson.toJson(data);
                 sheard = sharedPreferences.edit();
                 sheard.putString("data", updatedData);
                 sheard.commit();
 
-                // Optionally, provide feedback that the task status has been changed
-                textV.setText("Task status changed to Done");
 
-                // Reload data in the ListView
-            //    readDataAndPopulateListView();
-            }
         }
-
     }
-
-
-    }
+}
 
 
