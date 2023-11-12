@@ -28,11 +28,11 @@ public class ListAllTask extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         listView=findViewById(R.id.listView);
         // Read data from SharedPreferences and populate ListView
-        readDataAndPopulateListView();
+        ListData();
 
     }
 
-    public void readDataAndPopulateListView() {
+    public void ListData() {
         // Read JSON data from SharedPreferences
         String jsonData = sharedPreferences.getString("data", "");
 
