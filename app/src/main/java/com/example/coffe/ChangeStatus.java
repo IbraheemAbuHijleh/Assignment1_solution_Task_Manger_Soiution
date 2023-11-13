@@ -54,7 +54,7 @@ public class ChangeStatus extends AppCompatActivity {
 
         // Check if data is not null and contains tasks
         if (data != null && data.task != null && !data.task.isEmpty()) {
-            boolean taskFound = false;
+
 
             for (int i = 0; i < data.task.size(); i++) {
                 if (data.task.get(i).getName_Task().toLowerCase().equals(input)) {
@@ -64,7 +64,6 @@ public class ChangeStatus extends AppCompatActivity {
                         if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
                             // Update the status to "done" only if the current status is "due"
                             data.task.get(i).setStatus_Task("done");
-                            taskFound = true;
                             textV.setText("Task status changed to Done");
                         } else {
                             // The task is already done
