@@ -27,7 +27,7 @@ public class TaskActivity extends AppCompatActivity {
     private SharedPreferences shared;
     private SharedPreferences.Editor sheard;
 
-    private EditText textView;
+    private TextView textView;
 
 
     @Override
@@ -43,7 +43,7 @@ public class TaskActivity extends AppCompatActivity {
 
         edittxt2 = findViewById(R.id.edittxt2);
 
-        textView=findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
 
         // Initialize SharedPreferences
         shared = PreferenceManager.getDefaultSharedPreferences(this);
@@ -58,33 +58,36 @@ public class TaskActivity extends AppCompatActivity {
 
         if (input1.isEmpty() || input2.isEmpty()) {
 
-                textView.setText("Please Enter All Fields");
+            textView.setText("Please Enter All Fields");
 
         } else {
+            if (input2.equals("done") || input2.equals("due")) {
+                String existingData = shared.getString(Data, "");
 
-            String existingData = shared.getString(Data, "");
+                Gson gson = new Gson();
 
-            Gson gson = new Gson();
-
-            DataBase existingDataBase = gson.fromJson(existingData, DataBase.class);
+                DataBase existingDataBase = gson.fromJson(existingData, DataBase.class);
 
 
-            if (existingDataBase == null) {      // If no existing data, create a new DataBase
+                if (existingDataBase == null) {      // If no existing data, create a new DataBase
 
-                existingDataBase = new DataBase();
+                    existingDataBase = new DataBase();
+                }
+                existingDataBase.task.add(new Task_Manger(input1, input2));
+
+                String updatedData = gson.toJson(existingDataBase);
+
+                sheard = shared.edit();
+
+                sheard.putString(Data, updatedData);
+
+                sheard.commit();
+
+                textView.setText("Add TasK is Suffally");
+
+            } else {
+                textView.setText("Enter Status Done OR Due ");
             }
-            existingDataBase.task.add(new Task_Manger(input1, input2));
-
-            String updatedData = gson.toJson(existingDataBase);
-
-            sheard = shared.edit();
-
-            sheard.putString(Data, updatedData);
-
-            sheard.commit();
-
-                textView.setText("Done");
-
         }
     }
 }

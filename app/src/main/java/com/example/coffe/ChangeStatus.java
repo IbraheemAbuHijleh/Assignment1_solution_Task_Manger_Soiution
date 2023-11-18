@@ -27,7 +27,6 @@ public class ChangeStatus extends AppCompatActivity {
 
     private SharedPreferences.Editor sheard;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,24 +53,22 @@ public class ChangeStatus extends AppCompatActivity {
 
         // Check if data is not null and contains tasks
         if (data != null && data.task != null && !data.task.isEmpty()) {
-
-
             for (int i = 0; i < data.task.size(); i++) {
                 if (data.task.get(i).getName_Task().toLowerCase().equals(input)) {
-                    if (sep.equals("due")) {
-                        textV.setText("The task is already due");
-                    } else {
                         if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
-                            // Update the status to "done" only if the current status is "due"
-                            data.task.get(i).setStatus_Task("done");
-                            textV.setText("Task status changed to Done");
+                           if(sep.equals("due")) {
+                               textV.setText("The task is already due.");
+                               break;
+                           }else{
+                               data.task.get(i).setStatus_Task("done");
+                               textV.setText("Task status changed to Done");
+                           }
                         } else {
                             // The task is already done
                             textV.setText("The task is already done.");
                         }
                         break; // exit the loop since the task is found
                     }
-                }
                 else{
                     textV.setText("Sorry, the task is not found.");
                 }
@@ -79,14 +76,12 @@ public class ChangeStatus extends AppCompatActivity {
 
 
 
-                String updatedData = gson.toJson(data);
-                sheard = sharedPreferences.edit();
-                sheard.putString("data", updatedData);
-                sheard.commit();
+            String updatedData = gson.toJson(data);
+            sheard = sharedPreferences.edit();
+            sheard.putString("data", updatedData);
+            sheard.commit();
 
 
         }
     }
 }
-
-
