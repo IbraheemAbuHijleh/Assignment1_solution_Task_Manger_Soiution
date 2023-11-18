@@ -45,7 +45,7 @@
         android:layout_marginTop="40dp"
         android:background="#389118"
         android:ems="10"
-        android:hint="Enter Status"
+        android:hint="Enter Status Done or due"
         android:inputType="text"
         android:textSize="24dp"
         android:textStyle="bold|italic" />
@@ -71,7 +71,7 @@
         android:inputType="text"
         android:textAlignment="center"
         android:textColor="#A61616"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
         android:visibility="visible" />
 
