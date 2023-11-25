@@ -69,11 +69,19 @@ public class TaskActivity extends AppCompatActivity {
                 DataBase existingDataBase = gson.fromJson(existingData, DataBase.class);
 
 
-                if (existingDataBase == null) {      // If no existing data, create a new DataBase
+                if (existingDataBase == null) {
 
                     existingDataBase = new DataBase();
                 }
-                existingDataBase.task.add(new Task_Manger(input1, input2));
+                else {
+                    for (int i = 0; i < existingDataBase.task.size(); i++) {
+                        if (existingDataBase.task.get(i).getName_Task().equals(input1)) {
+                            textView.setText("Task is Found");
+                            return;
+                        }
+                }
+                   existingDataBase.task.add(new Task_Manger(input1, input2));
+                }
 
                 String updatedData = gson.toJson(existingDataBase);
 

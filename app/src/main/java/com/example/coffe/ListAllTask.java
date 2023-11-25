@@ -45,7 +45,6 @@ public class ListAllTask extends AppCompatActivity {
             // Create an ArrayList of strings to hold the names and statuses
             ArrayList<String> taskStrings = new ArrayList<>();
             taskStrings.clear();
-            // Loop through the tasks and create strings
             for (Task_Manger taskManager : data.task) {
                 if(taskManager.getStatus_Task().equals("due")) {
                     taskStrings.add("Name: " + taskManager.getName_Task() + ", Status: " + taskManager.getStatus_Task());
