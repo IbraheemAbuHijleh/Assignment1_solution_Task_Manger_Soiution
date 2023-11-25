@@ -3,7 +3,7 @@
     <string-array name="Item">
         <item>Add New Task</item>
         <item>Change State Task</item>
-        <item>List Viwe Task</item>
+        <item>List All Due Task</item>
     </string-array>
     <string-array name="Opestion">
         <item>Done</item>

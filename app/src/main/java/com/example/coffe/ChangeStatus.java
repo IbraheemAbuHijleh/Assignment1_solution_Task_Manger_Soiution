@@ -55,20 +55,20 @@ public class ChangeStatus extends AppCompatActivity {
         if (data != null && data.task != null && !data.task.isEmpty()) {
             for (int i = 0; i < data.task.size(); i++) {
                 if (data.task.get(i).getName_Task().toLowerCase().equals(input)) {
-                        if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
-                           if(sep.equals("due")) {
-                               textV.setText("The task is already due.");
-                               break;
-                           }else{
-                               data.task.get(i).setStatus_Task("done");
-                               textV.setText("Task status changed to Done");
-                           }
-                        } else {
-                            // The task is already done
-                            textV.setText("The task is already done.");
+                    if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
+                        if(sep.equals("due")) {
+                            textV.setText("The task is already due.");
+                            break;
+                        }else{
+                            data.task.get(i).setStatus_Task("done");
+                            textV.setText("Task status changed to Done");
                         }
-                        break; // exit the loop since the task is found
+                    } else {
+                        // The task is already done
+                        textV.setText("The task is already done.");
                     }
+                    break; // exit the loop since the task is found
+                }
                 else{
                     textV.setText("Sorry, the task is not found.");
                 }

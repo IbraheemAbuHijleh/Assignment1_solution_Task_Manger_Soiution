@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/ibraheem1"
     android:orientation="vertical"
-    tools:context=".MainActivity"
     android:padding="10dp">
 
 
@@ -30,8 +29,6 @@
         android:layout_marginTop="25dp"
         android:entries="@array/Item"
         android:textAlignment="textEnd" />
-
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
