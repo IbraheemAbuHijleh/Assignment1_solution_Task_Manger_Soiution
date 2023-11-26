@@ -73,25 +73,40 @@ public class TaskActivity extends AppCompatActivity {
 
                     existingDataBase = new DataBase();
                 }
+                if (existingDataBase.task.isEmpty()) {
+
+                    existingDataBase.task.add(new Task_Manger(input1, input2));
+
+                    String updatedData = gson.toJson(existingDataBase);
+
+                    sheard = shared.edit();
+
+                    sheard.putString(Data, updatedData);
+
+                    sheard.commit();
+
+                    textView.setText("Add TasK is Suffally");
+
+                }
                 else {
                     for (int i = 0; i < existingDataBase.task.size(); i++) {
                         if (existingDataBase.task.get(i).getName_Task().equals(input1)) {
                             textView.setText("Task is Found");
                             return;
                         }
+                    }
+                    existingDataBase.task.add(new Task_Manger(input1, input2));
+
+                    String updatedData = gson.toJson(existingDataBase);
+
+                    sheard = shared.edit();
+
+                    sheard.putString(Data, updatedData);
+
+                    sheard.commit();
+
+                    textView.setText("Add TasK is Suffally");
                 }
-                   existingDataBase.task.add(new Task_Manger(input1, input2));
-                }
-
-                String updatedData = gson.toJson(existingDataBase);
-
-                sheard = shared.edit();
-
-                sheard.putString(Data, updatedData);
-
-                sheard.commit();
-
-                textView.setText("Add TasK is Suffally");
 
             } else {
                 textView.setText("Enter Status Done OR Due ");

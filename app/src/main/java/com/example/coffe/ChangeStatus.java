@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -23,7 +24,7 @@ public class ChangeStatus extends AppCompatActivity {
 
     private EditText textView;
 
-    private EditText textV;
+    private TextView textV;
 
     private SharedPreferences.Editor sheard;
 
