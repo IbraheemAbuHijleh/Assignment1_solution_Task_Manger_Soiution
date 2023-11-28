@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class ChangeStatus extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         textView = findViewById(R.id.textView);
         textV = findViewById(R.id.textV);
-
+        checkBox.setChecked(true);
     }
 
     public void btnChangeOnClick(View v) {
@@ -47,9 +48,9 @@ public class ChangeStatus extends AppCompatActivity {
 
         String input = textView.getText().toString().toLowerCase();
 
-        String sep = checkBox.getText().toString().toLowerCase();
 
-        // Convert JSON data back to your object (DataBase)
+
+        // Convert JSON data back to your object DataBase
         Gson gson = new Gson();
         DataBase data = gson.fromJson(jsonData, DataBase.class);
 
@@ -83,6 +84,9 @@ public class ChangeStatus extends AppCompatActivity {
             sheard.commit();
 
 
+        }
+        else{
+            textV.setText("No Task Found ");
         }
     }
 }
