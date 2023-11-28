@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class ChangeStatus extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
-    private Spinner spinner;
+    private CheckBox checkBox;
 
     private EditText textView;
 
@@ -33,7 +34,7 @@ public class ChangeStatus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_status);
         Intent Intent = getIntent();
-        spinner = findViewById(R.id.spinner);
+        checkBox = findViewById(R.id.checkBox);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         textView = findViewById(R.id.textView);
         textV = findViewById(R.id.textV);
@@ -46,7 +47,7 @@ public class ChangeStatus extends AppCompatActivity {
 
         String input = textView.getText().toString().toLowerCase();
 
-        String sep = spinner.getSelectedItem().toString().toLowerCase();
+        String sep = checkBox.getText().toString().toLowerCase();
 
         // Convert JSON data back to your object (DataBase)
         Gson gson = new Gson();
@@ -55,15 +56,11 @@ public class ChangeStatus extends AppCompatActivity {
         // Check if data is not null and contains tasks
         if (data != null && data.task != null && !data.task.isEmpty()) {
             for (int i = 0; i < data.task.size(); i++) {
+                if(checkBox.isChecked()){
                 if (data.task.get(i).getName_Task().toLowerCase().equals(input)) {
                     if (data.task.get(i).getStatus_Task().toLowerCase().equals("due")) {
-                        if(sep.equals("due")) {
-                            textV.setText("The task is already due.");
-                            break;
-                        }else{
                             data.task.get(i).setStatus_Task("done");
                             textV.setText("Task status changed to Done");
-                        }
                     } else {
                         // The task is already done
                         textV.setText("The task is already done.");
@@ -73,7 +70,10 @@ public class ChangeStatus extends AppCompatActivity {
                 else{
                     textV.setText("Sorry, the task is not found.");
                 }
-            }
+            }else{
+                    textV.setText("Please Check done.");
+                }
+                }
 
 
 

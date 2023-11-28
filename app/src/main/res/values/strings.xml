@@ -7,7 +7,7 @@
     </string-array>
     <string-array name="Opestion">
         <item>Done</item>
-        <item>due</item>
+
 
     </string-array>
     <string name="title_activity_list_all_task">ListAllTask</string>
